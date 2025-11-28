@@ -269,11 +269,11 @@ void listBook(int n, struct Book a[]){
 	while (out==0){
 		system("cls");
 		printf("\n|");
-		for (j=0; j<48; i++){
+		for (j=0; j<48; j++){
 			printf("-");
 		}
 		printf("DANH SACH");
-		for (j=0; j<48; i++){
+		for (j=0; j<48; j++){
 			printf("-");
 		}
 		printf("|");
@@ -302,7 +302,7 @@ void listBook(int n, struct Book a[]){
 			printf("|");
 			printf("\n| %-103s |","2.Quay lai menu");
 			printf("\n|");
-			for (i=0; i<105; i++){
+			for (j=0; j<105; j++){
 				printf("-");
 			}
 			printf("|");
@@ -1124,4 +1124,5 @@ int main(){
 		}
 	}
 }
+
 
