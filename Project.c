@@ -826,7 +826,7 @@ void deleteBorrow(int *nBr, struct Borrow borrow[], struct Book book[], int nBo)
 	printf("\nTra sach thanh cong");
 }
 void listBorrow(int n, struct Borrow a[]){
-	int numPage=3, totalPage, out=0, page=1, i, number, j;
+	int numPage=10, totalPage, out=0, page=1, i, number, j;
 	char status [10], choicePage [5];
 	if (n%numPage==0){
 		totalPage=n/numPage;
@@ -1124,3 +1124,4 @@ int main(){
 		}
 	}
 }
+
