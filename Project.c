@@ -259,7 +259,7 @@ void changeBook(int n, struct Book a[]){
 	}
 }
 void listBook(int n, struct Book a[]){
-	int numPage=3, totalPage, out=0, page=1, i, number, j;
+	int numPage=10, totalPage, out=0, page=1, i, number, j;
 	char choicePage [5];
 	if (n%numPage==0){
 		totalPage=n/numPage;
@@ -1141,3 +1141,4 @@ int main(){
 		}
 	}
 }
+
