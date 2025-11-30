@@ -141,7 +141,7 @@ void changeBook(int n, struct Book a[]){
 	char publishYear [4], quantity [5], find [5];
 	while (checkId==0){
 		number=0, checkId=1;
-		printf("\nNhap id cua sach can tim: ");
+		printf("\nNhap id cua sach can sua: ");
 		gets(find);
 		if(strlen(find)==0 || strcmp(find," ")==0){
 			printf("\nKhong duoc de trong");
@@ -302,7 +302,7 @@ void listBook(int n, struct Book a[]){
 			printf("|");
 			printf("\n| %-103s |","2.Quay lai menu");
 			printf("\n|");
-			for (j=0; j<105; j++){
+			for (i=0; i<105; i++){
 				printf("-");
 			}
 			printf("|");
@@ -1033,6 +1033,7 @@ int main(){
 			case 1:
 				if (numBook==10000){
 					printf("\nThem sach that bai");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
@@ -1041,77 +1042,92 @@ int main(){
 				addBook(&bookList[numBook],numBook,idBook,bookList);
 				idBook++;
 				numBook++;
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 2:
 				if (numBook==0){
 					printf("\nCap nhat sach that bai");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				printf("\n=====Sua thong tin sach=====");
 				changeBook(numBook, bookList);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 3:
 				if (numBook==0){
 					printf("\nDanh sach sach trong");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				listBook(numBook, bookList);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 4:
 				if (numBook==0){
 					printf("\nXoa sach that bai");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				deleteBook(&numBook, bookList,borrowList,numBorrow);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 5:
 				if (numBook==0){
 					printf("\nTim sach that bai");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				findBook(bookList,numBook);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 6:
 				if (numBook==0){
 					printf("\nThem moi phieu muon that bai");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				addBorrow(&borrowList[numBorrow],borrowList,bookList,numBook,&idBorrow,idBook,&numBorrow);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 7:
 				if (numBorrow==0){
 					printf("\nTra sach that bai");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				deleteBorrow(&numBorrow,borrowList,bookList,numBook);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 8:
 				if (numBorrow==0){
 					printf("\nDanh sach phieu muon trong");
+					printf("\nNhan Enter de tiep tuc");
 					getchar();
 					break;
 				}
 				system("cls");
 				listBorrow(numBorrow,borrowList);
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 			case 9:
@@ -1119,10 +1135,9 @@ int main(){
 				break;
 			default:
 				printf("\nLua chon khong hop le");
+				printf("\nNhan Enter de tiep tuc");
 				getchar();
 				break;
 		}
 	}
 }
-
-
