@@ -3,15 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-int isEmptyString(char str[]) {
-	int i;
-	for (i = 0; str[i] != '\0'; i++) {
-		if (!isspace(str[i])) {
-			return 0;
-		}
-	}
-	return 1;
-}
 struct Book{
 	int bookId;
 	char title [50];
@@ -32,6 +23,15 @@ struct Borrow{
 	char borrowerName [50];
 	int status;
 };
+int isEmptyString(char str[]) {
+	int i;
+	for (i = 0; str[i] != '\0'; i++) {
+		if (!isspace(str[i])) {
+			return 0;
+		}
+	}
+	return 1;
+}
 int checkTime(int day, int month, int year){
 	if (day<1){
 		return 0;
@@ -1155,3 +1155,4 @@ int main(){
 		}
 	}
 }
+
