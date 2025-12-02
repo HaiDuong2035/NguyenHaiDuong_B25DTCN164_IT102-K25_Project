@@ -32,6 +32,21 @@ int isEmptyString(char str[]) {
 	}
 	return 1;
 }
+void delStr(char *str){
+    int start=0, end=strlen(str)-1;
+    while (isspace((unsigned char)str[start])){
+        start++;
+    }
+    while (end>=start && isspace(str[end])){
+        end--;
+    }
+    int i=0;
+    while (start+i<=end){
+        str[i]=str[start+i];
+        i++;
+    }
+    str[i] = '\0';
+}
 int checkTime(int day, int month, int year){
 	if (day<1){
 		return 0;
@@ -64,7 +79,7 @@ int checkTime(int day, int month, int year){
 }
 void addBook(struct Book *book, int n,int id, struct Book a[]){
 	int i, checkTitle=0, checkPublishYear=0, checkQuantity=0, number;
-	char publishYear [4], quantity [5], str [50];
+	char publishYear [10], quantity [10], str [50];
 	book->bookId=id;
 	printf("\nMa sach: %d\n",book->bookId);
 	do {
@@ -72,6 +87,7 @@ void addBook(struct Book *book, int n,int id, struct Book a[]){
 		while (1){
 			printf("\nNhap tieu de: ");
 			gets(book->title);
+			delStr(book->title);
 			strcpy(str,book->title);
 			if(strlen(book->title)==0 || isEmptyString(str)){
 				printf("\nTieu de khong duoc de trong\n");
@@ -91,6 +107,7 @@ void addBook(struct Book *book, int n,int id, struct Book a[]){
 	while (1){
 		printf("\nNhap tac gia: ");
 		gets(book->author);
+		delStr(book->author);
 		strcpy(str,book->author);
 		if(strlen(book->author)==0 || isEmptyString(str)){
 			printf("\nTac gia khong duoc de trong\n");
@@ -103,6 +120,7 @@ void addBook(struct Book *book, int n,int id, struct Book a[]){
 		number=0, checkPublishYear=1;
 		printf("\nNhap nam phat hanh: ");
 		gets(publishYear);
+		delStr(publishYear);
 		if(strlen(publishYear)==0){
 			printf("\nKhong duoc de trong\n");
 	        checkPublishYear=0;
@@ -128,6 +146,7 @@ void addBook(struct Book *book, int n,int id, struct Book a[]){
 		number=0, checkQuantity=1;
 		printf("\nNhap so luong sach: ");
 		gets(quantity);
+		delStr(quantity);
 		if(strlen(quantity)==0){
 			printf("\nKhong duoc de trong\n");
 			checkQuantity=0;
@@ -149,11 +168,12 @@ void addBook(struct Book *book, int n,int id, struct Book a[]){
 }
 void changeBook(int n, struct Book a[]){
 	int checkTitle=0, checkId=0, checkFind=0, pos, id, checkPublishYear=0, checkQuantity=0, i, number;
-	char publishYear [4], quantity [5], find [5], str [50];
+	char publishYear [10], quantity [10], find [10], str [50];
 	while (checkId==0){
 		number=0, checkId=1;
 		printf("\nNhap id cua sach can sua: ");
 		gets(find);
+		delStr(find);
 		if(strlen(find)==0){
 			printf("\nKhong duoc de trong");
 	        checkId=0;
@@ -191,6 +211,7 @@ void changeBook(int n, struct Book a[]){
 		while (1){
 			printf("\nNhap tieu de moi: ");
 			gets(a[pos].title);
+			delStr(a[pos].title);
 			strcpy(str,a[pos].title);
 			if(strlen(a[pos].title)==0 || isEmptyString(str)){
 				printf("\nTieu de khong duoc de trong\n");
@@ -213,7 +234,8 @@ void changeBook(int n, struct Book a[]){
 	while (1){
 		printf("\nNhap tac gia moi: ");
 		gets(a[pos].author);
-			strcpy(str,a[pos].author);
+		delStr(a[pos].author);
+		strcpy(str,a[pos].author);
 		if(strlen(a[pos].author)==0 || isEmptyString(str)){
 			printf("\nTac gia khong duoc de trong\n");
 			continue;
@@ -225,6 +247,7 @@ void changeBook(int n, struct Book a[]){
 		number=0, checkPublishYear=1;
 		printf("\nNhap nam phat hanh: ");
 		gets(publishYear);
+		delStr(publishYear);
 		if(strlen(publishYear)==0){
 			printf("\nKhong duoc de trong\n");
 	        checkPublishYear=0;
@@ -252,6 +275,7 @@ void changeBook(int n, struct Book a[]){
 		number=0, checkQuantity=1;
 		printf("\nNhap so luong sach moi: ");
 		gets(quantity);
+		delStr(quantity);
 		if(strlen(quantity)==0){
 			printf("\nKhong duoc de trong\n");
 			checkQuantity=0;
@@ -273,7 +297,7 @@ void changeBook(int n, struct Book a[]){
 }
 void listBook(int n, struct Book a[]){
 	int numPage=10, totalPage, out=0, page=1, i, number, j;
-	char choicePage [5];
+	char choicePage [10];
 	if (n%numPage==0){
 		totalPage=n/numPage;
 	} else {
@@ -321,6 +345,7 @@ void listBook(int n, struct Book a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -346,6 +371,7 @@ void listBook(int n, struct Book a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -374,6 +400,7 @@ void listBook(int n, struct Book a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -402,6 +429,7 @@ void listBook(int n, struct Book a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -424,11 +452,12 @@ void listBook(int n, struct Book a[]){
 }
 void deleteBook(int *nBo, struct Book book[], struct Borrow borrow[], int nBr){
 	int checkId=0, i, number, checkFind=0, pos, out=0, numConfirm;
-	char find [5], confirm [5];
+	char find [10], confirm [10];
 	while (checkId==0){
 		number=0, checkId=1;
 		printf("\nNhap id cua sach can xoa: ");
 		gets(find);
+		delStr(find);
 		if(strlen(find)==0 || strcmp(find," ")==0){
 			printf("\nKhong duoc de trong\n");
 	        checkId=0;
@@ -474,6 +503,7 @@ void deleteBook(int *nBo, struct Book book[], struct Borrow borrow[], int nBr){
 		printf("\n2.Xoa");
 		printf("\nNhap lua chon: ");
 		fgets(confirm,sizeof(confirm),stdin);
+		delStr(confirm);
 		confirm[strcspn(confirm,"\n")]='\0';
 		numConfirm=atoi(confirm);
 		printf("\n========================================");
@@ -502,6 +532,7 @@ void findBook(struct Book a[], int n){
 	while (1){
 		printf("\nNhap tieu de sach can tim: ");
 		gets(find);
+		delStr(find);
 		if(strlen(find)==0 || isEmptyString(find)){
 			printf("\nKhong duoc de trong");
 			continue;
@@ -556,7 +587,7 @@ void findBook(struct Book a[], int n){
 }
 int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book book[],int n, int *idBr, int idBo, int *numBr){
 	int checkId=0, checkFind=0, number, i, pos, checkDay=0, checkMonth=0, checkYear=0, out=0, numConfirm;
-	char find [5], day [2], month [2], year [4], confirm [5], str [50];
+	char find [10], day [10], month [10], year [10], confirm [10], str [50];
 	borrow->borrowId=(*idBr);
 	printf("\n=====Nhap thong tin phieu muon=====");
 	printf("\n\nMa phieu muon: %d\n",borrow->borrowId);
@@ -564,6 +595,7 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 		number=0, checkId=1;
 		printf("\nNhap id cua sach can muon: ");
 		gets(find);
+		delStr(find);
 		if(strlen(find)==0){
 			printf("\nKhong duoc de trong\n");
 	        checkId=0;
@@ -606,6 +638,7 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 		printf("\n2.Co");
 		printf("\nNhap lua chon: ");
 		fgets(confirm,sizeof(confirm),stdin);
+		delStr(confirm);
 		confirm[strcspn(confirm,"\n")]='\0';
 		numConfirm=atoi(confirm);
 		switch (numConfirm){
@@ -626,6 +659,7 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 			number=0, checkDay=1;
 			printf("\nNhap ngay muon sach: ");
 			gets(day);
+			delStr(day);
 			if(strlen(day)==0){
 				printf("\nKhong duoc de trong\n");
 				checkDay=0;
@@ -648,6 +682,7 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 			number=0, checkMonth=1;
 			printf("\nNhap thang muon sach: ");
 			gets(month);
+			delStr(month);
 			if(strlen(month)==0){
 				printf("\nKhong duoc de trong\n");
 				checkMonth=0;
@@ -670,6 +705,7 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 			number=0, checkYear=1;
 			printf("\nNhap nam muon sach: ");
 			gets(year);
+			delStr(year);
 			if(strlen(year)==0){
 				printf("\nKhong duoc de trong\n");
 				checkYear=0;
@@ -695,6 +731,7 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 	while (1){
 		printf("\nNhap ten nguoi muon: ");
 		gets(borrow->borrowerName);
+		delStr(borrow->borrowerName);
 		strcpy(str,borrow->borrowerName);
 		if(strlen(borrow->borrowerName)==0 || isEmptyString(str)){
 			printf("\nTen nguoi muon khong duoc de trong\n");
@@ -714,11 +751,12 @@ int addBorrow(struct Borrow *borrow, struct Borrow listBorrow[], struct Book boo
 }
 void deleteBorrow(int *nBr, struct Borrow borrow[], struct Book book[], int nBo){
 	int checkId=0, number, i, checkFind=0, pos, checkDay=0, checkMonth=0, checkYear=0, checkReturnTime;
-	char find [5], day [2], month [2], year [4];
+	char find [10], day [10], month [10], year [10];
 	while (checkId==0){
 		number=0, checkId=1;
 		printf("\nNhap ma phieu muon de tra: ");
 		gets(find);
+		delStr(find);
 		if(strlen(find)==0){
 			printf("\nKhong duoc de trong\n");
 	        checkId=0;
@@ -754,6 +792,7 @@ void deleteBorrow(int *nBr, struct Borrow borrow[], struct Book book[], int nBo)
 			number=0, checkDay=1;
 			printf("\nNhap ngay tra sach: ");
 			gets(day);
+			delStr(day);
 			if(strlen(day)==0){
 				printf("\nKhong duoc de trong\n");
 				checkDay=0;
@@ -776,6 +815,7 @@ void deleteBorrow(int *nBr, struct Borrow borrow[], struct Book book[], int nBo)
 			number=0, checkMonth=1;
 			printf("\nNhap thang tra sach: ");
 			gets(month);
+			delStr(month);
 			if(strlen(month)==0){
 				printf("\nKhong duoc de trong\n");
 				checkMonth=0;
@@ -798,6 +838,7 @@ void deleteBorrow(int *nBr, struct Borrow borrow[], struct Book book[], int nBo)
 			number=0, checkYear=1;
 			printf("\nNhap nam tra sach: ");
 			gets(year);
+			delStr(year);
 			if(strlen(year)==0){
 				printf("\nKhong duoc de trong\n");
 				checkYear=0;
@@ -841,7 +882,7 @@ void deleteBorrow(int *nBr, struct Borrow borrow[], struct Book book[], int nBo)
 }
 void listBorrow(int n, struct Borrow a[]){
 	int numPage=10, totalPage, out=0, page=1, i, number, j;
-	char status [10], choicePage [5];
+	char status [10], choicePage [10];
 	if (n%numPage==0){
 		totalPage=n/numPage;
 	} else {
@@ -895,6 +936,7 @@ void listBorrow(int n, struct Borrow a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -920,6 +962,7 @@ void listBorrow(int n, struct Borrow a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -948,6 +991,7 @@ void listBorrow(int n, struct Borrow a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -976,6 +1020,7 @@ void listBorrow(int n, struct Borrow a[]){
 			printf("|");
 			printf("\nNhap lua chon: ");
 			fgets(choicePage,sizeof(choicePage),stdin);
+			delStr(choicePage);
 			choicePage[strcspn(choicePage,"\n")]='\0';
 			number=atoi(choicePage);
 			switch (number){
@@ -998,7 +1043,7 @@ void listBorrow(int n, struct Borrow a[]){
 }
 int main(){
 	int numBook=11, idBook=12, idBorrow=12, numBorrow=11, number;
-	char choice [5];
+	char choice [10];
 	struct Book bookList[10000] = {
 		{1, "Lap Trinh C", "Nguyen Van A", 2005, 10},
 	    {2, "Cau Truc Du Lieu", "Tran Thi B", 2018, 5},
@@ -1041,6 +1086,7 @@ int main(){
 		printf("\n|----------------------------------|");
 		printf("\nNhap lua chon: ");
 		fgets(choice,sizeof(choice),stdin);
+		delStr(choice);
 		choice[strcspn(choice,"\n")]='\0';
 		number=atoi(choice); 
 		switch (number){
@@ -1155,4 +1201,3 @@ int main(){
 		}
 	}
 }
-
